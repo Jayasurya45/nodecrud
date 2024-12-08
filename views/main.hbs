@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crud Operation</h1>
+
+{{#if edit_id}}
+    <h1>{{message}}</h1>
+<h1>Edit</h1>
+    <form action="/update/{{edit_id}}" method="post">
+        <label for="">Name:</label>
+        <input type="text" name="name" value="{{edit_det.name}}">
+        <label for="">Profession</label>
+        <input type="text" name="proffesion" value="{{edit_det.proffesion}}">
+        <input type="submit" name="submit">
+    </form>
+{{else}}
+<h1>Create</h1>
+    <h1>{{message}}</h1>
+
+    <form action="/createdet" method="post">
+        <label for="">Name:</label>
+        <input type="text" name="name">
+        <label for="">Profession:</label>
+        <input type="text" name="proffesion">
+        <input type="submit" name="submit">
+    </form>
+    <br><br>
+    {{/if}}
+    <ul>
+        <h1>details</h1>
+        {{#each readdet}}
+      <li>{{this.name}} --- {{this.proffesion}}
+  <a href="/?editid={{this._id}}" style="text-decoration: none;">&nbsp;Edit&nbsp;</a>
+  <a href="/?deleteid={{this._id}}" style="text-decoration: none;">Delete</a>
+</li>
+        {{/each}}
+    </ul>
+    
+</body>
+</html>
